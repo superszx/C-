@@ -1,0 +1,90 @@
+1.c++内存布局
+	栈区 堆区 全局/静态区， 文字常量区，代码区
+
+2.类和对象
+	- class 类名{
+	public :
+	
+	protected:
+	
+	private:
+	}
+	- private/public/protected
+	- 成员函数的外部定义 void clas
+	- 构造函数 ： 默认构造函数，有参构造函数，复制构造函数
+		默认构造函数
+			Stock::Stock()	//外部定义 默认构造函数
+			:company("no name"), //成员初始化表达式
+			shares(0),
+			share_val(0.0),
+			total_val(0.0)
+			{
+				cout << "默认构造函数}; << endl;
+			};
+			使用：
+			Stock first;				//隐式地 调用 默认构造函数 
+			Stock first;				//显式地 调用 默认构造函数
+			Stock *pfirst = new stock;	//隐式地 调用 默认构造函数
+			误用（区分）
+			Stock first("Concrete Conglomerate"); 	//调用 带参的构造函数
+			Stock second();  						//声明 一个返回值为 Stock类 的函数
+			
+		带参的构造函数
+			void Stock::Stock(const sting &co, long n, double pr) //外部定义 带参的构造函数
+			:company(co),	//成员初始化表达式
+			shares(n),
+			share_val(pr)
+			{
+				cout << "带参的构造函数"
+			}
+			使用：
+			Stock food = Stock("World Cabbage", 250, 1.25);	//显式地 调用 带参的构造函数
+			Stock garment("Furry Mason", 50, 2.5);			//隐式地 调用 带参的构造函数
+			
+		复制构造函数（可以发生在 情况1中 格式： 类名 对象名1 =  对象名2）
+			拷贝构造函数在以下三种情况会自动调用：
+				1.当把一个已经存在的对象赋值给另一个新的对象时。
+				2.当实参和形参都是对象，进行形参和实参的结合时。
+				3.当函数的返回值是对象，函数调用完成返回时。
+			
+			-如果类中含有指针型的数据成员、需要使用动态内存，程序员最好显式定义自己的复制构造函数
+			class Company{
+			public:
+			Company(const Company &); //声明一个 复制构造函数
+			private:
+			char *_name;
+			}
+			
+			Company::Company(const Company &cp)//外部定义 复制构造函数
+			{
+				int len = strlen(cp);
+				_name = new char[len+1];
+				strcpy(_name, cp);
+			}
+			
+			Company ap("apple");
+			Company ap1 = ap ;
+			
+	- 析构函数 ： 
+		Company::Company(char *name)	//外部定义 带参的构造函数
+		{
+			_name = new char[10];
+			strcpy(_name, name) ;
+		}
+		Company::~Company()	//外部定义 析构函数
+		{
+			delete [] _name;
+		}
+		
+	- 赋值运算符函数（发生在 对象实例声明过后 的 赋值过程 格式： 对象名1 = 对象名2）
+		class Company{
+			public:
+			Company & operator = (const Company &cp)
+			{
+				define.....
+			};
+			protected:
+			...
+			private:
+			...
+			};
