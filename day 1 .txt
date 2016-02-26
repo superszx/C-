@@ -1,0 +1,35 @@
+1.namespace 
+	- suing namespace std;     // using 编译指令
+	- std::string s = ""; // 使用作用域限定符
+	- using std::cout;         //using 声明机制
+ 
+ 2.new/delete 
+	new 可以直接初始化
+	malloc/free 没有初始化
+ 
+ 3.const/reference
+	- const int a = 3;
+	- const init (const) *pa;//pointer to const
+	- int * const pb //const pointer
+	- const int * const pc ; //两者都不能修改
+	
+	- int a = 3; int & refa = a;//引用必须初始化
+	
+	const int & refb = 10；//常引用
+	
+	-- 引用作为函数的参数
+	定义：void func（int &a， int &b）
+	传参：
+	-- 引用作为函数的返回值
+	
+4.const_cast/static_cast
+	const_cast 主要用于函数传出，可以去掉其const属性
+
+5.overload
+	--参数类型，个数，顺序进行重载
+	--default param 缺省参数 从右到左
+6.extern "C"{
+}
+
+7.string append(),size(),
+	
